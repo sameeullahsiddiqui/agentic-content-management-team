@@ -1,0 +1,11 @@
+# # OpenAI and Azure OpenAI support
+openai>=1.0.0
+
+# # Core AutoGen dependencies
+autogen>=0.9.6
+autogen-agentchat>=0.4.0
+autogen-ext[openai]>=0.4.0
+
+# # Environment and configuration
+python-dotenv>=1.0.0
+pyyaml>=6.0

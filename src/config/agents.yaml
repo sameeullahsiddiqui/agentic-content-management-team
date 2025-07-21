@@ -1,0 +1,246 @@
+# Agent Configuration for AutoGen Content Team India
+# Customize agent behavior, models, and parameters
+
+project_manager:
+  name: "ProjectManager"
+  role: "UserProxy"
+  model: "gpt-4"
+  temperature: 0.3
+  max_tokens: 1000
+  timeout: 120
+  max_consecutive_auto_reply: 3
+  human_input_mode: "NEVER"  # Options: NEVER, ALWAYS, TERMINATE
+  code_execution:
+    enabled: true
+    use_docker: false
+    work_dir: "output"
+  termination_conditions:
+    - "final content approved"
+    - "task completed"
+    - "content ready for publication"
+  indian_context:
+    cultural_awareness: high
+    regional_focus: 
+      - mumbai
+      - delhi
+      - bangalore
+      - pune
+      - hyderabad
+    business_types:
+      - startups
+      - smes
+      - enterprises
+      - family_businesses
+
+content_writer:
+  name: "ContentWriter"
+  role: "Assistant"
+  model: "gpt-4"
+  temperature: 0.7
+  max_tokens: 2000
+  timeout: 180
+  specializations:
+    - indian_cultural_context
+    - simple_english_writing
+    - social_media_content
+    - blog_articles
+    - email_marketing
+  writing_style:
+    reading_level: "8th_grade"
+    tone: "conversational_professional"
+    cultural_sensitivity: "high"
+    local_examples: true
+    hindi_phrases: true
+  content_types:
+    - social_media_posts
+    - blog_articles
+    - email_campaigns
+    - website_copy
+    - whatsapp_messages
+    - video_scripts
+
+content_editor:
+  name: "ContentEditor"
+  role: "Assistant"
+  model: "gpt-4"
+  temperature: 0.4
+  max_tokens: 1500
+  timeout: 150
+  responsibilities:
+    - grammar_and_spelling
+    - cultural_appropriateness
+    - fact_checking
+    - tone_consistency
+    - readability_optimization
+    - compliance_check
+  quality_standards:
+    readability_score: "flesch_kincaid_8th_grade"
+    cultural_sensitivity: "mandatory"
+    factual_accuracy: "verified"
+    brand_voice_consistency: "high"
+    mobile_optimization: true
+  indian_focus:
+    - asci_guidelines_compliance
+    - regional_language_considerations
+    - festival_calendar_awareness
+    - local_business_context
+
+seo_specialist:
+  name: "SEOSpecialist"
+  role: "Assistant"
+  model: "gpt-3.5-turbo"  # Cost-effective for SEO tasks
+  temperature: 0.2
+  max_tokens: 800
+  timeout: 120
+  expertise:
+    - indian_search_behavior
+    - hindi_keyword_research
+    - local_seo
+    - voice_search_optimization
+    - mobile_first_indexing
+  deliverables:
+    - keyword_recommendations
+    - meta_descriptions
+    - header_structure
+    - internal_linking
+    - image_alt_text
+    - schema_markup
+  indian_seo_focus:
+    regional_keywords: true
+    voice_search: true  # Growing 50% YoY in India
+    mobile_first: true  # 80% mobile users
+    local_business: true
+    festival_seasonality: true
+
+brand_strategist:
+  name: "BrandStrategist"
+  role: "Assistant"
+  model: "gpt-4"
+  temperature: 0.5
+  max_tokens: 1200
+  timeout: 150
+  expertise:
+    - indian_consumer_psychology
+    - cultural_brand_positioning
+    - trust_building_strategies
+    - community_engagement
+    - value_proposition_design
+  deliverables:
+    - brand_voice_guidelines
+    - cultural_messaging_framework
+    - competitor_differentiation
+    - consumer_persona_insights
+    - brand_storytelling
+  indian_market_focus:
+    family_oriented_messaging: true
+    price_value_sensitivity: true
+    social_proof_importance: high
+    regional_customization: true
+    festival_integration: true
+
+# Global Settings
+global_settings:
+  default_language: "english"
+  fallback_model: "gpt-3.5-turbo"
+  retry_attempts: 3
+  rate_limiting:
+    requests_per_minute: 60
+    requests_per_hour: 1000
+  cost_optimization:
+    use_cheaper_models_for_simple_tasks: true
+    cache_similar_requests: true
+    batch_processing: true
+
+# Indian Market Specific Settings
+indian_market_settings:
+  target_regions:
+    metros:
+      - mumbai
+      - delhi
+      - bangalore
+      - chennai
+      - kolkata
+      - hyderabad
+    tier2_cities:
+      - pune
+      - ahmedabad
+      - surat
+      - jaipur
+      - lucknow
+      - kanpur
+    tier3_cities:
+      - agra
+      - meerut
+      - rajkot
+      - kalyan
+      - vasai
+      - aurangabad
+  
+  cultural_calendar:
+    major_festivals:
+      - diwali
+      - holi
+      - eid
+      - christmas
+      - dussehra
+      - ganesh_chaturthi
+      - durga_puja
+    business_seasons:
+      - pre_diwali_shopping
+      - new_year_resolutions
+      - monsoon_marketing
+      - summer_campaigns
+  
+  language_preferences:
+    primary: "english"
+    secondary: "hindi"
+    regional:
+      - tamil
+      - bengali
+      - telugu
+      - marathi
+      - gujarati
+      - kannada
+      - malayalam
+      - punjabi
+  
+  content_preferences:
+    mobile_first: true
+    video_content_priority: high
+    voice_search_optimization: true
+    social_media_focus:
+      - instagram
+      - facebook
+      - whatsapp
+      - linkedin
+      - youtube
+    
+  compliance_requirements:
+    - asci_guidelines
+    - consumer_protection_act
+    - data_protection_act
+    - advertising_standards
+    - regional_regulations
+
+# Performance Monitoring
+monitoring:
+  content_quality_metrics:
+    - readability_score
+    - cultural_appropriateness
+    - engagement_prediction
+    - seo_optimization_score
+    - brand_alignment_score
+  
+  indian_specific_metrics:
+    - cultural_relevance_score
+    - local_example_usage
+    - regional_customization_level
+    - festival_integration_score
+    - mobile_optimization_score
+  
+  success_criteria:
+    content_approval_rate: 90
+    cultural_appropriateness: 95
+    seo_optimization: 85
+    brand_consistency: 90
+    user_engagement_prediction: 80
