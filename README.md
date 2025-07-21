@@ -1,4 +1,4 @@
-# AutoGen Content Creation Team for Indian Markets
+# Agentic Content Creation Team for Indian Markets
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![AutoGen](https://img.shields.io/badge/AutoGen-0.2%2B-green.svg)](https://github.com/microsoft/autogen)
