@@ -53,7 +53,7 @@ cp .env.example .env
 
 5. **Run the application**
 ```bash
-python main.py
+python .\examples\mumbai_restaurant.py
 ```
 
 ## 📋 Usage Examples
@@ -99,11 +99,6 @@ agentic-content-management-team/
 │   │   ├── content_writer.py
 │   │   ├── content_editor.py
 │   │   └── seo_specialist.py
-│   ├── templates/               # Industry-specific templates
-│   │   ├── restaurant.py
-│   │   ├── tech_startup.py
-│   │   ├── ecommerce.py
-│   │   └── education.py
 │   └── utils/                   # Utility functions
 │       ├── config.py
 │       └── helpers.py
@@ -172,22 +167,31 @@ agentic-content-management-team/
 ## Configuration
 
 ### Environment Variables (.env)
-```env
-# OpenAI Configuration
+```
+env# Choose provider: "azure", "openai", or "lmstudio"
+SELECTED_PROVIDER=azure
+
+# === LM Studio Configuration ===
+LMSTUDIO_MODEL=llama-2-7b-chat
+LMSTUDIO_BASE_URL=http://127.0.0.1:1234/v1
+LMSTUDIO_API_KEY=lm-studio
+LMSTUDIO_API_TYPE=openai
+LMSTUDIO_TEMPERATURE=0.7
+LMSTUDIO_MAX_TOKENS=2048
+LMSTUDIO_PRICE=0.0,0.0   # Use comma-separated string if needed
+
+# === OpenAI Configuration ===
 OPENAI_API_KEY=your_openai_api_key_here
 OPENAI_MODEL=gpt-4
 OPENAI_TEMPERATURE=0.7
+OPENAI_MAX_TOKENS=2000
 
-# Content Configuration
-OUTPUT_DIRECTORY=output
-MAX_CONTENT_LENGTH=2000
-DEFAULT_LANGUAGE=english
-INCLUDE_HINDI_PHRASES=true
+# === Azure OpenAI Configuration ===
+AZURE_OPENAI_API_KEY=your_azure_openai_key_here
+AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
+AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4
+AZURE_OPENAI_API_VERSION=2024-02-15-preview
 
-# Indian Market Settings
-DEFAULT_CURRENCY=INR
-TARGET_REGIONS=mumbai,delhi,bangalore,pune,hyderabad
-FESTIVAL_CALENDAR_ENABLED=true
 ```
 
 ### Agent Configuration (config/agents.yaml)
