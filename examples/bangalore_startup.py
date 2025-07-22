@@ -7,17 +7,17 @@ from dotenv import load_dotenv
 
 # Add the parent directory (project root) to Python path
 project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root)+"/src")
+sys.path.insert(0, str(project_root) + "/src")
 from content_team import ContentCreationTeam
 
 load_dotenv()
 
 # Main execution
-if __name__ == "__main__":    
+if __name__ == "__main__":
 
     """Example: Creating content for a Bangalore tech startup"""
     team = ContentCreationTeam()
-    
+
     brief = """
                 Create a blog article for 'EduTech Solutions', a Bangalore-based startup that provides 
                 AI-powered learning platforms for rural Indian schools.
@@ -39,6 +39,5 @@ if __name__ == "__main__":
                 
                 Goal: Establish thought leadership and generate leads for government contracts
             """
-    
+
     team.create_blog_article(brief)
-        

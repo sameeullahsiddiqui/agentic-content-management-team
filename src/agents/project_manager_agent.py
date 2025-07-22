@@ -13,18 +13,18 @@ from base_agent import BaseAgent
 
 from typing import Dict, Any, List, Optional
 
+
 class ProjectManagerAgent(BaseAgent):
-    
+
     def __init__(
-            self,
-            llm_config: Dict[str, Any],
-            agent_config: Optional[Dict[str, Any]] = None,
-            regional_config: Optional[Dict[str, Any]] = None
-            ):
-        
+        self,
+        llm_config: Dict[str, Any],
+        agent_config: Optional[Dict[str, Any]] = None,
+        regional_config: Optional[Dict[str, Any]] = None,
+    ):
         """
         Initialize Project Manager Agent
-        
+
         Args:
             llm_config: LLM configuration
             agent_config: Agent-specific configuration
@@ -34,17 +34,17 @@ class ProjectManagerAgent(BaseAgent):
             name="ProjectManager",
             agent_type="userproxy",
             llm_config=llm_config,
-            system_message=  self.get_system_message(),
+            system_message=self.get_system_message(),
             agent_config=agent_config,
-            regional_config=regional_config
-                        )
-        
+            regional_config=regional_config,
+        )
+
         # Project management specific attributes
         self.current_project = None
         self.project_history = []
         self.quality_standards = self._get_quality_standards()
         self.workflow_stages = self._get_workflow_stages()
-    
+
     def get_system_message(self) -> str:
         """Get the system message for Project Manager"""
         return f"""You are an experienced Project Manager for content creation targeting Indian audiences. 
@@ -101,7 +101,7 @@ class ProjectManagerAgent(BaseAgent):
 
         Use "FINAL CONTENT APPROVED" to terminate when all standards are met.
         """
-    
+
     def get_specialization(self) -> List[str]:
 
         return [
@@ -112,9 +112,9 @@ class ProjectManagerAgent(BaseAgent):
             "team_management",
             "project_timeline_management",
             "stakeholder_communication",
-            "deliverable_validation"
+            "deliverable_validation",
         ]
-       
+
     def analyze_content_brief(self, brief: str) -> Dict[str, Any]:
 
         analysis = {
@@ -125,12 +125,10 @@ class ProjectManagerAgent(BaseAgent):
             "regional_focus": self._extract_regional_focus(brief),
             "key_requirements": self._extract_key_requirements(brief),
             "success_metrics": self._define_success_metrics(brief),
-            "cultural_considerations": self._identify_cultural_considerations(brief)
+            "cultural_considerations": self._identify_cultural_considerations(brief),
         }
-        
-        return analysis
-    
 
+        return analysis
 
     def _get_quality_standards(self) -> Dict[str, Any]:
 
@@ -141,9 +139,9 @@ class ProjectManagerAgent(BaseAgent):
                     "No offensive or insensitive cultural references",
                     "Appropriate use of regional context",
                     "Inclusive representation across Indian communities",
-                    "Respectful treatment of religious and cultural practices"
+                    "Respectful treatment of religious and cultural practices",
                 ],
-                "minimum_score": 95
+                "minimum_score": 95,
             },
             "readability": {
                 "description": "Content is accessible to diverse Indian audiences",
@@ -151,9 +149,9 @@ class ProjectManagerAgent(BaseAgent):
                     "8th grade reading level or below",
                     "Short paragraphs for mobile consumption",
                     "Clear and simple language",
-                    "Logical flow and structure"
+                    "Logical flow and structure",
                 ],
-                "minimum_score": 85
+                "minimum_score": 85,
             },
             "local_relevance": {
                 "description": "Content includes Indian market context and examples",
@@ -161,9 +159,9 @@ class ProjectManagerAgent(BaseAgent):
                     "Indian business examples or case studies",
                     "Local market data and statistics",
                     "Regional preferences consideration",
-                    "Indian currency and numbering systems"
+                    "Indian currency and numbering systems",
                 ],
-                "minimum_score": 80
+                "minimum_score": 80,
             },
             "mobile_optimization": {
                 "description": "Content optimized for mobile consumption",
@@ -171,9 +169,9 @@ class ProjectManagerAgent(BaseAgent):
                     "Short paragraphs (3-4 sentences max)",
                     "Bullet points and lists for easy scanning",
                     "Clear headers and subheaders",
-                    "Minimal horizontal scrolling required"
+                    "Minimal horizontal scrolling required",
                 ],
-                "minimum_score": 85
+                "minimum_score": 85,
             },
             "call_to_action": {
                 "description": "Clear and appropriate CTAs for Indian market",
@@ -181,12 +179,12 @@ class ProjectManagerAgent(BaseAgent):
                     "Culturally appropriate action requests",
                     "Local contact methods (WhatsApp, phone)",
                     "Indian payment method references when relevant",
-                    "Clear next steps for users"
+                    "Clear next steps for users",
                 ],
-                "minimum_score": 75
-            }
+                "minimum_score": 75,
+            },
         }
-    
+
     def _get_workflow_stages(self) -> List[Dict[str, Any]]:
 
         return [
@@ -194,74 +192,108 @@ class ProjectManagerAgent(BaseAgent):
                 "stage": "brief_analysis",
                 "description": "Analyze content brief and requirements",
                 "owner": "project_manager",
-                "deliverables": ["requirement_analysis", "target_audience_profile", "success_criteria"],
-                "duration": "5-10 minutes"
+                "deliverables": [
+                    "requirement_analysis",
+                    "target_audience_profile",
+                    "success_criteria",
+                ],
+                "duration": "5-10 minutes",
             },
             {
                 "stage": "content_creation",
                 "description": "Create initial content draft",
                 "owner": "content_writer",
-                "deliverables": ["content_draft", "cultural_references", "local_examples"],
-                "duration": "15-20 minutes"
+                "deliverables": [
+                    "content_draft",
+                    "cultural_references",
+                    "local_examples",
+                ],
+                "duration": "15-20 minutes",
             },
             {
                 "stage": "content_editing",
                 "description": "Review and improve content quality",
-                "owner": "content_editor", 
-                "deliverables": ["edited_content", "quality_improvements", "compliance_check"],
-                "duration": "10-15 minutes"
+                "owner": "content_editor",
+                "deliverables": [
+                    "edited_content",
+                    "quality_improvements",
+                    "compliance_check",
+                ],
+                "duration": "10-15 minutes",
             },
             {
                 "stage": "seo_optimization",
                 "description": "Optimize content for Indian search behavior",
                 "owner": "seo_specialist",
-                "deliverables": ["keyword_optimization", "meta_data", "search_enhancements"],
-                "duration": "10-12 minutes"
+                "deliverables": [
+                    "keyword_optimization",
+                    "meta_data",
+                    "search_enhancements",
+                ],
+                "duration": "10-12 minutes",
             },
             {
                 "stage": "brand_alignment",
                 "description": "Ensure brand consistency and strategic alignment",
                 "owner": "brand_strategist",
-                "deliverables": ["brand_review", "strategic_recommendations", "positioning_validation"],
-                "duration": "8-10 minutes"
+                "deliverables": [
+                    "brand_review",
+                    "strategic_recommendations",
+                    "positioning_validation",
+                ],
+                "duration": "8-10 minutes",
             },
             {
                 "stage": "final_review",
                 "description": "Final quality control and approval",
                 "owner": "project_manager",
-                "deliverables": ["quality_assessment", "final_approval", "publication_readiness"],
-                "duration": "5-8 minutes"
-            }
+                "deliverables": [
+                    "quality_assessment",
+                    "final_approval",
+                    "publication_readiness",
+                ],
+                "duration": "5-8 minutes",
+            },
         ]
-    
+
     def _identify_content_type(self, brief: str) -> str:
 
         brief_lower = brief.lower()
-        
-        if any(word in brief_lower for word in ["social media", "instagram", "facebook", "linkedin", "twitter"]):
+
+        if any(
+            word in brief_lower
+            for word in ["social media", "instagram", "facebook", "linkedin", "twitter"]
+        ):
             return "social_media_campaign"
-        elif any(word in brief_lower for word in ["blog", "article", "post", "thought leadership"]):
+        elif any(
+            word in brief_lower
+            for word in ["blog", "article", "post", "thought leadership"]
+        ):
             return "blog_article"
         elif any(word in brief_lower for word in ["email", "newsletter", "campaign"]):
             return "email_campaign"
-        elif any(word in brief_lower for word in ["website", "landing page", "web copy"]):
+        elif any(
+            word in brief_lower for word in ["website", "landing page", "web copy"]
+        ):
             return "website_content"
-        elif any(word in brief_lower for word in ["menu", "product description", "catalog"]):
+        elif any(
+            word in brief_lower for word in ["menu", "product description", "catalog"]
+        ):
             return "product_content"
         else:
             return "general_content"
-    
+
     def _extract_target_audience(self, brief: str) -> Dict[str, Any]:
 
         brief_lower = brief.lower()
-        
+
         audience = {
             "demographics": [],
             "psychographics": [],
             "geographic": [],
-            "behavioral": []
+            "behavioral": [],
         }
-        
+
         # Demographics
         if "young professional" in brief_lower or "professionals" in brief_lower:
             audience["demographics"].append("young_professionals_25_35")
@@ -271,47 +303,70 @@ class ProjectManagerAgent(BaseAgent):
             audience["demographics"].append("entrepreneurs_30_50")
         if "families" in brief_lower or "parents" in brief_lower:
             audience["demographics"].append("families_with_children")
-        
+
         # Geographic
-        indian_cities = ["mumbai", "delhi", "bangalore", "chennai", "kolkata", "hyderabad", "pune"]
+        indian_cities = [
+            "mumbai",
+            "delhi",
+            "bangalore",
+            "chennai",
+            "kolkata",
+            "hyderabad",
+            "pune",
+        ]
         for city in indian_cities:
             if city in brief_lower:
                 audience["geographic"].append(city)
-        
+
         if "tier-2" in brief_lower or "tier 2" in brief_lower:
             audience["geographic"].append("tier_2_cities")
         if "tier-3" in brief_lower or "tier 3" in brief_lower:
             audience["geographic"].append("tier_3_cities")
         if "metro" in brief_lower:
             audience["geographic"].append("metro_cities")
-        
+
         return audience
-    
+
     def _extract_business_context(self, brief: str) -> Dict[str, Any]:
 
         brief_lower = brief.lower()
-        
+
         context = {
             "industry": "general",
             "business_type": "unknown",
             "stage": "unknown",
-            "size": "unknown"
+            "size": "unknown",
         }
-        
+
         # Industry identification
-        if any(word in brief_lower for word in ["restaurant", "food", "cafe", "dining"]):
+        if any(
+            word in brief_lower for word in ["restaurant", "food", "cafe", "dining"]
+        ):
             context["industry"] = "food_beverage"
-        elif any(word in brief_lower for word in ["tech", "software", "ai", "app", "startup"]):
+        elif any(
+            word in brief_lower for word in ["tech", "software", "ai", "app", "startup"]
+        ):
             context["industry"] = "technology"
-        elif any(word in brief_lower for word in ["ecommerce", "e-commerce", "online store", "retail"]):
+        elif any(
+            word in brief_lower
+            for word in ["ecommerce", "e-commerce", "online store", "retail"]
+        ):
             context["industry"] = "ecommerce_retail"
-        elif any(word in brief_lower for word in ["education", "school", "training", "course"]):
+        elif any(
+            word in brief_lower
+            for word in ["education", "school", "training", "course"]
+        ):
             context["industry"] = "education"
-        elif any(word in brief_lower for word in ["healthcare", "hospital", "clinic", "medical"]):
+        elif any(
+            word in brief_lower
+            for word in ["healthcare", "hospital", "clinic", "medical"]
+        ):
             context["industry"] = "healthcare"
-        elif any(word in brief_lower for word in ["finance", "bank", "insurance", "fintech"]):
+        elif any(
+            word in brief_lower for word in ["finance", "bank", "insurance", "fintech"]
+        ):
             context["industry"] = "finance"
-        
+
         # Business type
         if "startup" in brief_lower:
             context["business_type"] = "startup"
@@ -321,14 +376,14 @@ class ProjectManagerAgent(BaseAgent):
             context["business_type"] = "enterprise"
         elif "family business" in brief_lower:
             context["business_type"] = "family_business"
-        
+
         return context
-    
+
     def _extract_regional_focus(self, brief: str) -> List[str]:
 
         brief_lower = brief.lower()
         regions = []
-        
+
         # Specific cities
         indian_cities = {
             "mumbai": ["mumbai", "bombay"],
@@ -338,13 +393,13 @@ class ProjectManagerAgent(BaseAgent):
             "kolkata": ["kolkata", "calcutta"],
             "hyderabad": ["hyderabad"],
             "pune": ["pune"],
-            "ahmedabad": ["ahmedabad"]
+            "ahmedabad": ["ahmedabad"],
         }
-        
+
         for city, variants in indian_cities.items():
             if any(variant in brief_lower for variant in variants):
                 regions.append(city)
-        
+
         # Regional categories
         if "north india" in brief_lower or "northern india" in brief_lower:
             regions.extend(["delhi", "punjab", "haryana", "rajasthan"])
@@ -354,14 +409,14 @@ class ProjectManagerAgent(BaseAgent):
             regions.extend(["mumbai", "pune", "ahmedabad", "gujarat"])
         if "east india" in brief_lower or "eastern india" in brief_lower:
             regions.extend(["kolkata", "bhubaneswar"])
-        
+
         return list(set(regions))  # Remove duplicates
-    
+
     def _extract_key_requirements(self, brief: str) -> List[str]:
 
         requirements = []
         brief_lower = brief.lower()
-        
+
         # Content format requirements
         if "instagram" in brief_lower:
             requirements.append("instagram_optimized_content")
@@ -373,7 +428,7 @@ class ProjectManagerAgent(BaseAgent):
             requirements.append("email_marketing_format")
         if "blog" in brief_lower:
             requirements.append("seo_optimized_blog_post")
-        
+
         # Business requirements
         if "lead generation" in brief_lower or "leads" in brief_lower:
             requirements.append("lead_generation_focused")
@@ -383,121 +438,132 @@ class ProjectManagerAgent(BaseAgent):
             requirements.append("sales_conversion_oriented")
         if "engagement" in brief_lower:
             requirements.append("high_engagement_content")
-        
+
         # Cultural requirements
-        if "festival" in brief_lower or "diwali" in brief_lower or "holi" in brief_lower:
+        if (
+            "festival" in brief_lower
+            or "diwali" in brief_lower
+            or "holi" in brief_lower
+        ):
             requirements.append("festival_themed_content")
         if "local" in brief_lower or "regional" in brief_lower:
             requirements.append("regional_customization")
         if "hindi" in brief_lower:
             requirements.append("hindi_integration")
-        
+
         return requirements
-    
+
     def _define_success_metrics(self, brief: str) -> Dict[str, Any]:
 
         metrics = {
             "engagement_metrics": [],
             "business_metrics": [],
-            "quality_metrics": []
+            "quality_metrics": [],
         }
-        
+
         brief_lower = brief.lower()
-        
+
         # Engagement metrics
         if "social media" in brief_lower:
-            metrics["engagement_metrics"].extend([
-                "likes_comments_shares", 
-                "reach_impressions", 
-                "follower_growth"
-            ])
-        
+            metrics["engagement_metrics"].extend(
+                ["likes_comments_shares", "reach_impressions", "follower_growth"]
+            )
+
         if "blog" in brief_lower:
-            metrics["engagement_metrics"].extend([
-                "page_views", 
-                "time_on_page", 
-                "social_shares"
-            ])
-        
+            metrics["engagement_metrics"].extend(
+                ["page_views", "time_on_page", "social_shares"]
+            )
+
         # Business metrics
         if "sales" in brief_lower or "revenue" in brief_lower:
-            metrics["business_metrics"].extend([
-                "conversion_rate", 
-                "sales_increase", 
-                "revenue_growth"
-            ])
-        
+            metrics["business_metrics"].extend(
+                ["conversion_rate", "sales_increase", "revenue_growth"]
+            )
+
         if "leads" in brief_lower:
-            metrics["business_metrics"].extend([
-                "lead_generation", 
-                "contact_form_submissions", 
-                "inquiry_calls"
-            ])
-        
+            metrics["business_metrics"].extend(
+                ["lead_generation", "contact_form_submissions", "inquiry_calls"]
+            )
+
         # Quality metrics (always included)
-        metrics["quality_metrics"].extend([
-            "cultural_appropriateness_score_95_plus",
-            "readability_score_85_plus", 
-            "indian_context_integration",
-            "mobile_optimization_score_85_plus"
-        ])
-        
+        metrics["quality_metrics"].extend(
+            [
+                "cultural_appropriateness_score_95_plus",
+                "readability_score_85_plus",
+                "indian_context_integration",
+                "mobile_optimization_score_85_plus",
+            ]
+        )
+
         return metrics
-    
+
     def _identify_cultural_considerations(self, brief: str) -> List[str]:
-     
-     
+
         considerations = []
         brief_lower = brief.lower()
-        
+
         # Festival considerations
-        festivals = ["diwali", "holi", "eid", "christmas", "dussehra", "ganesh chaturthi"]
+        festivals = [
+            "diwali",
+            "holi",
+            "eid",
+            "christmas",
+            "dussehra",
+            "ganesh chaturthi",
+        ]
         for festival in festivals:
             if festival in brief_lower:
                 considerations.append(f"integrate_{festival}_themes")
-        
+
         # Regional considerations
         if "south indian" in brief_lower:
-            considerations.extend([
-                "south_indian_cultural_references",
-                "tamil_telugu_cultural_context",
-                "traditional_south_indian_values"
-            ])
-        
+            considerations.extend(
+                [
+                    "south_indian_cultural_references",
+                    "tamil_telugu_cultural_context",
+                    "traditional_south_indian_values",
+                ]
+            )
+
         if "north indian" in brief_lower:
-            considerations.extend([
-                "north_indian_cultural_references", 
-                "hindi_cultural_context",
-                "punjabi_haryanvi_influences"
-            ])
-        
+            considerations.extend(
+                [
+                    "north_indian_cultural_references",
+                    "hindi_cultural_context",
+                    "punjabi_haryanvi_influences",
+                ]
+            )
+
         # Business culture considerations
         if "family business" in brief_lower:
-            considerations.extend([
-                "family_values_emphasis",
-                "trust_building_focus",
-                "generational_respect"
-            ])
-        
+            considerations.extend(
+                [
+                    "family_values_emphasis",
+                    "trust_building_focus",
+                    "generational_respect",
+                ]
+            )
+
         if "startup" in brief_lower:
-            considerations.extend([
-                "innovation_emphasis",
-                "young_professional_culture",
-                "tech_savvy_audience"
-            ])
-        
+            considerations.extend(
+                [
+                    "innovation_emphasis",
+                    "young_professional_culture",
+                    "tech_savvy_audience",
+                ]
+            )
+
         # Always include these for Indian market
-        considerations.extend([
-            "mobile_first_consumption",
-            "price_value_sensitivity", 
-            "social_proof_importance",
-            "family_decision_making_influence"
-        ])
-        
+        considerations.extend(
+            [
+                "mobile_first_consumption",
+                "price_value_sensitivity",
+                "social_proof_importance",
+                "family_decision_making_influence",
+            ]
+        )
+
         return list(set(considerations))  # Remove duplicates
-    
-
-
 
     def validate_team_output(self, content: str, agent_name: str) -> Dict[str, Any]:
         """Validate output from team members"""
@@ -507,21 +573,21 @@ class ProjectManagerAgent(BaseAgent):
             "validation_passed": True,
             "issues": [],
             "suggestions": [],
-            "score": 0.0
+            "score": 0.0,
         }
-        
+
         # Run quality checks using base class methods
         quality_results = self.validate_content_quality(content)
-        
+
         # Check against quality standards
         for standard, criteria in self.quality_standards.items():
             if standard in quality_results:
                 score = quality_results[standard]
                 min_score = criteria["minimum_score"]
-                
+
                 if isinstance(score, bool):
                     score = 100.0 if score else 0.0
-                
+
                 if score < min_score:
                     validation["validation_passed"] = False
                     validation["issues"].append(
@@ -530,16 +596,17 @@ class ProjectManagerAgent(BaseAgent):
                     validation["suggestions"].append(
                         f"Improve {standard}: {criteria['description']}"
                     )
-        
+
         # Calculate overall score
         scores = [
-            score for score in quality_results.values() 
+            score
+            for score in quality_results.values()
             if isinstance(score, (int, float))
         ]
         validation["score"] = sum(scores) / len(scores) if scores else 0.0
-        
+
         return validation
-    
+
     def generate_project_summary(self, project_data: Dict[str, Any]) -> str:
         """Generate project summary for final approval"""
         summary = f"""
@@ -553,16 +620,16 @@ class ProjectManagerAgent(BaseAgent):
 
                     QUALITY VALIDATION RESULTS:
                     """
-        
+
         # Add validation results for each agent
-        for agent, validation in project_data.get('validations', {}).items():
+        for agent, validation in project_data.get("validations", {}).items():
             summary += f"""
                         {agent.upper()} VALIDATION:
                         - Overall Score: {validation.get('score', 0):.1f}/100
                         - Status: {'PASSED' if validation.get('validation_passed') else 'NEEDS REVISION'}
                         - Issues: {len(validation.get('issues', []))} found
                         """
-        
+
         # Add final recommendations
         summary += f"""
                     FINAL RECOMMENDATIONS:
@@ -574,11 +641,12 @@ class ProjectManagerAgent(BaseAgent):
 
                     STATUS: {'APPROVED FOR PUBLICATION' if all(v.get('validation_passed', False) for v in project_data.get('validations', {}).values()) else 'REQUIRES REVISION'}
                     """
-        
-        return summary
-    
-    def get_next_action_recommendation(self, current_stage: str, validation_results: Dict[str, Any]) -> str:
 
+        return summary
+
+    def get_next_action_recommendation(
+        self, current_stage: str, validation_results: Dict[str, Any]
+    ) -> str:
         """Get recommendation for next action based on current stage and validation"""
         if not validation_results.get("validation_passed", False):
             return f"""
@@ -597,22 +665,23 @@ class ProjectManagerAgent(BaseAgent):
         else:
             stage_flow = {
                 "brief_analysis": "content_creation",
-                "content_creation": "content_editing", 
+                "content_creation": "content_editing",
                 "content_editing": "seo_optimization",
                 "seo_optimization": "brand_alignment",
                 "brand_alignment": "final_review",
-                "final_review": "project_completion"
+                "final_review": "project_completion",
             }
-            
+
             next_stage = stage_flow.get(current_stage, "project_completion")
-            
+
             if next_stage == "project_completion":
                 return "ALL STAGES COMPLETED - READY FOR FINAL APPROVAL"
             else:
                 return f"Stage validated. Proceeding to: {next_stage}"
-    
-    def create_feedback_message(self, agent_name: str, content: str, validation: Dict[str, Any]) -> str:
 
+    def create_feedback_message(
+        self, agent_name: str, content: str, validation: Dict[str, Any]
+    ) -> str:
         """Create detailed feedback message for team members"""
         feedback = f"""
                     FEEDBACK FOR {agent_name.upper()}
@@ -623,19 +692,19 @@ class ProjectManagerAgent(BaseAgent):
                     Status: {'APPROVED' if validation.get('validation_passed') else 'REVISION REQUIRED'}
 
                     """
-        
-        if validation.get('issues'):
+
+        if validation.get("issues"):
             feedback += "ISSUES TO ADDRESS:\n"
-            for issue in validation['issues']:
+            for issue in validation["issues"]:
                 feedback += f"{issue}\n"
             feedback += "\n"
-        
-        if validation.get('suggestions'):
+
+        if validation.get("suggestions"):
             feedback += "IMPROVEMENT SUGGESTIONS:\n"
-            for suggestion in validation['suggestions']:
+            for suggestion in validation["suggestions"]:
                 feedback += f"{suggestion}\n"
             feedback += "\n"
-        
+
         # Add agent-specific guidance
         agent_guidance = {
             "ContentWriter": """
@@ -669,14 +738,16 @@ class ProjectManagerAgent(BaseAgent):
                                 - Check family-oriented messaging where appropriate
                                 - Confirm value proposition resonates with price-sensitive audience
                                 - Verify community and social proof elements
-                                """
+                                """,
         }
-        
+
         feedback += agent_guidance.get(agent_name, "")
-        
-        if validation.get('validation_passed'):
+
+        if validation.get("validation_passed"):
             feedback += "\nEXCELLENT WORK! Content meets all quality standards."
         else:
-            feedback += "\nPlease revise and resubmit after addressing the issues above."
-        
+            feedback += (
+                "\nPlease revise and resubmit after addressing the issues above."
+            )
+
         return feedback

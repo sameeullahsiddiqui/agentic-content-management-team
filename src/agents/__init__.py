@@ -15,11 +15,11 @@ from .brand_strategist_agent import BrandStrategistAgent
 
 __all__ = [
     "BaseAgent",
-    "ProjectManagerAgent", 
+    "ProjectManagerAgent",
     "ContentWriterAgent",
     "ContentEditorAgent",
     "SEOSpecialistAgent",
-    "BrandStrategistAgent"
+    "BrandStrategistAgent",
 ]
 
 # Agent registry for easy access
@@ -28,16 +28,19 @@ AGENT_REGISTRY = {
     "content_writer": ContentWriterAgent,
     "content_editor": ContentEditorAgent,
     "seo_specialist": SEOSpecialistAgent,
-    "brand_strategist": BrandStrategistAgent
+    "brand_strategist": BrandStrategistAgent,
 }
+
 
 def get_agent_class(agent_type: str):
     """Get agent class by type name"""
     return AGENT_REGISTRY.get(agent_type.lower())
 
+
 def list_available_agents():
     """List all available agent types"""
     return list(AGENT_REGISTRY.keys())
+
 
 # Version info
 __version__ = "1.0.0"

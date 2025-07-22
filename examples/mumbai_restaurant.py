@@ -15,7 +15,7 @@ from typing import Dict, Any
 
 # Add the parent directory (project root) to Python path
 project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root)+"/src")
+sys.path.insert(0, str(project_root) + "/src")
 from content_team import ContentCreationTeam
 
 
@@ -92,30 +92,33 @@ async def create_restaurant_content() -> Dict[str, Any]:
                 - Generate 100+ weekend dinner reservations monthly
                 - Establish 20+ corporate lunch partnerships
                 """
-    
+
     # Create social media campaign
     print("\n   Creating Mumbai Restaurant Social Media Campaign...")
     print("         Target: Young professionals in BKC area")
     print("         Location: Bandra West, Mumbai")
     print("         Cuisine: Authentic South Indian")
-    
+
     results = team.create_social_media_campaign(restaurant_brief)
-    
+
     # Add restaurant-specific metadata
-    results.update({
-        "business_type": "restaurant",
-        "location": "mumbai_bandra",
-        "cuisine_type": "south_indian",
-        "target_demographic": "young_professionals_bkc",
-        "campaign_type": "social_media_comprehensive"
-    })
-    
+    results.update(
+        {
+            "business_type": "restaurant",
+            "location": "mumbai_bandra",
+            "cuisine_type": "south_indian",
+            "target_demographic": "young_professionals_bkc",
+            "campaign_type": "social_media_comprehensive",
+        }
+    )
+
     return results
 
+
 def create_additional_restaurant_content() -> Dict[str, Any]:
-    
+
     team = ContentCreationTeam()
-    
+
     # Menu description content
     menu_brief = """
                 MENU CONTENT CREATION - SPICE ROUTE RESTAURANT
@@ -145,14 +148,15 @@ def create_additional_restaurant_content() -> Dict[str, Any]:
                 - Trust through traditional preparation methods
                 - Excitement about discovering new flavors
                 """
-    
+
     return team.create_content(menu_brief, "menu_descriptions")
+
 
 def create_corporate_catering_content() -> Dict[str, Any]:
     """Create B2B content for corporate catering"""
-    
+
     team = ContentCreationTeam()
-    
+
     corporate_brief = """
                         CORPORATE CATERING CONTENT - SPICE ROUTE
                         
@@ -186,39 +190,44 @@ def create_corporate_catering_content() -> Dict[str, Any]:
                         - Repetitive food options for team lunches
                         - Complicated ordering and billing processes
                         """
-    
+
     return team.create_content(corporate_brief, "corporate_catering")
 
+
 if __name__ == "__main__":
-    
+
     async def run_restaurant_examples():
         """Run all restaurant content creation examples"""
-        
+
         print("Mumbai Restaurant Content Creation Examples")
         print("=" * 50)
-        
+
         try:
             # Main social media campaign
             print("\n1 Creating Social Media Campaign...")
             social_results = await create_restaurant_content()
-            print(f"- Social media campaign: {social_results.get('status', 'completed')}")
-            
+            print(
+                f"- Social media campaign: {social_results.get('status', 'completed')}"
+            )
+
             # Menu descriptions
             print("\n2 Creating Menu Descriptions...")
             menu_results = create_additional_restaurant_content()
             print(f"- Menu descriptions: {menu_results.get('status', 'completed')}")
-            
+
             # Corporate catering
             print("\n3 Creating Corporate Catering Content...")
             corporate_results = create_corporate_catering_content()
-            print(f"- Corporate catering: {corporate_results.get('status', 'completed')}")
-            
+            print(
+                f"- Corporate catering: {corporate_results.get('status', 'completed')}"
+            )
+
             print("\nAll restaurant content examples completed!")
             print(f"4 Check output directory for generated content")
-            
+
         except Exception as e:
             print(f"Error running examples: {e}")
             print("Make sure to set your API key in environment variables")
-    
+
     # Run examples
     asyncio.run(run_restaurant_examples())

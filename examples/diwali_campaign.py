@@ -7,16 +7,16 @@ from dotenv import load_dotenv
 
 # Add the parent directory (project root) to Python path
 project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root)+"/src")
+sys.path.insert(0, str(project_root) + "/src")
 from content_team import ContentCreationTeam
 
 load_dotenv()
 
 
-if __name__ == "__main__":    
+if __name__ == "__main__":
     """Example: Creating content for an e-commerce platform"""
     team = ContentCreationTeam()
-    
+
     brief = """
                 Create content for 'DesiCart', an e-commerce platform specializing in Indian ethnic wear.
                 
@@ -39,5 +39,5 @@ if __name__ == "__main__":
                 
                 Cultural considerations: Emphasize tradition, family values, and festival celebrations
             """
-    
+
     team.create_social_media_campaign(brief)
